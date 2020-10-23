@@ -1,34 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const ErrorExample = () => {
-  const [count, setCount] = useState(0);
+  const [size, setSize] = useState(window.innerWidth);
 
-  const increment = () => {
-    setCount((count) => count + 1);
-  };
+  useEffect(() => {
+    const titleElement = window.document.querySelector('title');
+    titleElement.textContent = 'New Title';
+    setSize(window.innerWidth);
+  }, [window.innerWidth]);
 
-  const decrement = () => {
-    setCount((count) => count - 1);
-  };
-
-  const reset = () => {
-    setCount(0);
-  };
-
-  return (
-    <React.Fragment>
-      <h3>{count}</h3>
-      <button onClick={increment} className='btn'>
-        Add Count
-      </button>
-      <button onClick={decrement} className='btn'>
-        Delete Count
-      </button>
-      <button onClick={reset} className='btn'>
-        Reset Count
-      </button>
-    </React.Fragment>
-  );
+  return <React.Fragment>{size}</React.Fragment>;
 };
 
 export default ErrorExample;
